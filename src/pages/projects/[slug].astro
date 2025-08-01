@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={`${project.data.title} - David`}>
+  <div class="section">
+    <div class="container">
+      <div class="text-center mb-8">
+        <a href="/" class="mb-4 inline-block">← Back to Home</a>
+        <h1 class="mb-4">{project.data.title}</h1>
+        <p class="hero-subtitle">{project.data.description}</p>
+      </div>
+
+      {project.data.image && (
+        <div class="mb-12">
+          <div class="card mb-8">
+            <img src={project.data.image} alt={`${project.data.title} project preview`} width="100%" height="300" style="border-radius: var(--border-radius);" />
+          </div>
+        </div>
+      )}
+
+      <div class="card grid md:grid-cols-3 gap-8 mb-12">
+        <div style="grid-column: span 2 / span 2;">
+          <div class="prose">
+            <Content />
+          </div>
+        </div>
+
+        <div>
+          {project.data.github && (
+            <>
+              <h3 class="mb-4">
+                <a href={project.data.github} class="inline-flex items-center gap-2">
+                  GitHub
+                  <img src="/src/assets/icons/github.svg" alt="GitHub" width="16" height="16" />
+                </a>
+              </h3>
+              <div class="mb-6"></div>
+            </>
+          )}
+
+          {project.data.demo && (
+            <>
+              <h3 class="mb-4">Demo</h3>
+              <div class="mb-6">
+                <a href={project.data.demo} class="block">View Live Demo →</a>
+              </div>
+            </>
+          )}
+
+          <h3 class="mb-4">Technologies</h3>
+          <div class="flex flex-wrap gap-2 mb-6">
+            {project.data.tech.map((tech) => (
+              <span class="tag">{tech}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

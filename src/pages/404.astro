@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found">
+  <div class="section">
+    <div class="container">
+      <div class="text-center">
+        <!-- Smiling Guy SVG -->
+        <div class="mb-8">
+          <img src="/src/assets/icons/404-character.svg" alt="Friendly 404 character" width="200" height="200" style="margin: 0 auto;" />
+        </div>
+
+        <!-- 404 Message -->
+        <div class="mb-8">
+          <h1 class="hero-title mb-4" style="font-size: 4rem; color: var(--color-primary);">
+            404
+          </h1>
+          <h2 class="mb-4" style="font-size: 2rem; color: var(--color-text-primary);">
+            Friendo!
+          </h2>
+          <p class="hero-subtitle mb-8">
+            Looks like you've wandered into uncharted territory! Don't worry, even the best explorers take a wrong turn sometimes.
+          </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="hero-actions">
+          <a href="/" class="btn btn-primary">
+            🏠 Take Me Home
+          </a>
+          <button 
+            onclick="history.back()" 
+            class="btn btn-secondary"
+          >
+            ← Go Back
+          </button>
+        </div>
+
+        <!-- Fun fact -->
+        <div class="mt-16">
+          <p style="color: var(--color-text-muted); font-style: italic;">
+            Fun fact: The first 404 error was at CERN in 1992. You're part of web history! 🎉
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Add some bounce animation to the buttons */
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Subtle floating animation for the whole character */
+  svg {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+</style>

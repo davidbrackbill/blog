@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  
+  // Get all unique tech tags
+  const allTags = projects.reduce((tags, project) => {
+    project.data.tech.forEach(tech => {
+      if (!tags.includes(tech)) {
+        tags.push(tech);
+      }
+    });
+    return tags;
+  }, []);
+
+  return allTags.map(tag => ({
+    params: { tag },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+const projects = await getCollection('projects');
+const filteredProjects = projects.filter(project => 
+  project.data.tech.includes(tag)
+);
+---
+
+<Layout title={`${tag} Projects - David`} description={`Projects using ${tag} technology`}>
+  <div class="section">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h1 class="mb-4">Projects using {tag}</h1>
+        <p class="hero-subtitle">
+          {filteredProjects.length} project{filteredProjects.length !== 1 ? 's' : ''} found
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredProjects.map((project) => (
+          <div class="card tech-filtered">
+            <a href={`/projects/${project.slug}`} class="no-underline">
+              <h3 class="text-xl font-semibold mb-4 hover:text-blue-600 transition-colors duration-200">{project.data.title}</h3>
+            </a>
+            <p class="mb-4" style="color: var(--color-text-secondary)">{project.data.description}</p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {project.data.tech.map((tech) => (
+                <a href={`/tech/${tech}`} class="no-underline">
+                  <span class={`tag transition-all duration-200 hover:scale-105 cursor-pointer ${tech === tag ? 'tag-active' : ''}`}>
+                    {tech}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <div class="flex gap-4">
+              <a 
+                href={`/projects/${project.slug}`}
+                class="btn btn-primary"
+              >
+                View Details
+              </a>
+              {project.data.github && (
+                <a 
+                  href={project.data.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-secondary"
+                >
+                  GitHub
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {filteredProjects.length > 0 && (
+        <div class="text-center mt-12">
+          <a 
+            href="/projects" 
+            class="inline-flex items-center justify-center px-6 py-2.5 rounded-full font-semibold border transition-all duration-200 hover:-translate-y-0.5" 
+            style="background-color: var(--color-surface-elevated); color: var(--color-text-primary); border-color: var(--color-border);"
+          >
+            ← View All Projects
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>

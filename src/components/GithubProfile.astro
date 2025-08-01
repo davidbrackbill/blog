@@ -1,0 +1,140 @@
+---
+// https://github.com/grubersjoe/github-contributions-api
+const url = "https://github-contributions-api.jogruber.de/v4/davidbrackbill?y=last"
+const response = await fetch(url);
+const userData = await response.json();
+const levels = userData.contributions;
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const currentMonth = new Date().getMonth(); 
+const orderedMonths = months.map((_, i) => months[(currentMonth + i) % 12]);
+const weeks = [...Array(52).keys()]
+const days = [...Array(7).keys()]
+---
+
+<div class="mb-12">
+  <h3 class="text-xl font-semibold mb-6 text-center">Contribution Graph</h3>
+  <div class="card">
+    <div class="commit-graph">
+      <div class="graph-months">
+        {orderedMonths.map((month) => (
+          <span>{month}</span>
+        ))}
+      </div>
+      <div class="graph-days">
+        <div class="graph-grid">
+          {weeks.map((w) => (
+            <div class="week">
+              {days.map((d) => (
+                <div 
+                  class={`day level-${levels[w * 7 + d].level}`}
+                ></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+  /* GitHub Commit Graph Styles */
+  .commit-graph {
+    font-size: 12px;
+    padding: 1rem;
+  }
+
+  .graph-months {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding-left: 2rem;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+  }
+
+  .graph-days {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .day-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    width: 1.5rem;
+    height: 105px;
+  }
+
+  .graph-grid {
+    display: flex;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .week {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .day {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .day.level-0 {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .day.level-1 {
+    background-color: var(--color-primary);
+    opacity: 0.25;
+  }
+
+  .day.level-2 {
+    background-color: var(--color-primary);
+    opacity: 0.5;
+  }
+
+  .day.level-3 {
+    background-color: var(--color-primary);
+    opacity: 0.75;
+  }
+
+  .day.level-4 {
+    background-color: var(--color-primary);
+    opacity: 1;
+  }
+
+  .day:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .day {
+      width: 8px;
+      height: 8px;
+    }
+    
+    .graph-months {
+      font-size: 0.625rem;
+    }
+    
+    .day-labels {
+      font-size: 0.625rem;
+      width: 1.2rem;
+      height: 84px;
+    }
+  }
+</style>

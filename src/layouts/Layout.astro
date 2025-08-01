@@ -1,0 +1,162 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Personal portfolio of a software engineer" } = Astro.props;
+const year = new Date().getFullYear()
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/db.svg" />
+    <title>{title}</title>
+    
+    <script is:inline>
+      // Immediate theme application to prevent FOUC
+      (function() {
+        function getStoredTheme() {
+          return localStorage.getItem('theme');
+        }
+        
+        function getPreferredTheme() {
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        const theme = getStoredTheme() || getPreferredTheme();
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Check if this is the first visit to this specific page
+        const currentPath = window.location.pathname;
+        const visitKey = `visited-${currentPath}`;
+        
+        if (!sessionStorage.getItem(visitKey)) {
+          document.documentElement.classList.add('first-visit-page');
+          sessionStorage.setItem(visitKey, 'true');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="/" class="nav-logo">
+          David Brackbill
+        </a>
+        <div class="flex items-center gap-8">
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <img src="/src/assets/icons/sun.svg" alt="Toggle theme" width="20" height="20" class="theme-icon" />
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-1 container">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; {year} David Brackbill</p>
+        <div class="footer-links">
+          <a href="mailto:david@example.com" class="flex items-center gap-2 font-medium transition-colors duration-200">
+            <img src="/src/assets/icons/mail.svg" alt="Email" width="16" height="16" />
+            Email
+          </a>
+          <a 
+            href="https://linkedin.com/in/brackbill" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 font-medium transition-colors duration-200"
+          >
+            <img src="/src/assets/icons/linkedin.svg" alt="LinkedIn" width="16" height="16" />
+            LinkedIn
+          </a>
+          <a 
+            href="https://github.com/davidbrackbill" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 font-medium transition-colors duration-200"
+          >
+            <img src="/src/assets/icons/github.svg" alt="GitHub" width="16" height="16" />
+            GitHub
+          </a>
+        </div>
+      </div>
+    </footer>
+    
+    <script is:inline>
+      // Theme toggle functionality
+      class ThemeManager {
+        constructor() {
+          this.theme = document.documentElement.getAttribute('data-theme') || 'light';
+          this.init();
+        }
+
+        init() {
+          this.updateToggleButton();
+          this.bindEvents();
+        }
+
+        setTheme(theme) {
+          this.theme = theme;
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          this.updateToggleButton();
+        }
+
+        toggleTheme() {
+          const newTheme = this.theme === 'light' ? 'dark' : 'light';
+          this.setTheme(newTheme);
+        }
+
+        updateToggleButton() {
+          const toggleButton = document.querySelector('.theme-toggle');
+          if (toggleButton) {
+            toggleButton.setAttribute('aria-label', `Switch to ${this.theme === 'light' ? 'dark' : 'light'} mode`);
+          }
+        }
+
+        bindEvents() {
+          // Listen for system theme changes
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+              this.setTheme(e.matches ? 'dark' : 'light');
+            }
+          });
+
+          // Theme toggle button click
+          document.addEventListener('click', (e) => {
+            if (e.target.matches('.theme-toggle') || e.target.closest('.theme-toggle')) {
+              this.toggleTheme();
+            }
+          });
+        }
+      }
+
+      // Initialize theme manager when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new ThemeManager();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

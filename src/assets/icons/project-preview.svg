@@ -1,0 +1,79 @@
+<svg 
+  width="100%" 
+  height="300" 
+  viewBox="0 0 800 300" 
+  xmlns="http://www.w3.org/2000/svg"
+  style="border-radius: var(--border-radius);"
+>
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:var(--color-primary);stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:var(--color-primary);stop-opacity:0.3" />
+    </linearGradient>
+    <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:var(--color-primary);stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:var(--color-primary);stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Browser window mockup -->
+  <rect x="100" y="50" width="600" height="200" rx="8" fill="var(--color-surface-elevated)" stroke="var(--color-border)" stroke-width="2"/>
+  
+  <!-- Browser header -->
+  <rect x="100" y="50" width="600" height="30" rx="8" fill="var(--color-surface)" />
+  <rect x="100" y="74" width="600" height="1" fill="var(--color-border)" />
+  
+  <!-- Browser dots -->
+  <circle cx="118" cy="65" r="4" fill="#ff5f57"/>
+  <circle cx="138" cy="65" r="4" fill="#ffbd2e"/>
+  <circle cx="158" cy="65" r="4" fill="#28ca42"/>
+  
+  <!-- Code blocks -->
+  <rect x="120" y="95" width="80" height="8" rx="2" fill="url(#codeGradient)"/>
+  <rect x="210" y="95" width="120" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.3"/>
+  <rect x="340" y="95" width="60" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.2"/>
+  
+  <rect x="120" y="115" width="200" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.2"/>
+  <rect x="330" y="115" width="100" height="8" rx="2" fill="url(#codeGradient)"/>
+  <rect x="440" y="115" width="80" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.3"/>
+  
+  <rect x="120" y="135" width="60" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.3"/>
+  <rect x="190" y="135" width="140" height="8" rx="2" fill="var(--color-text-muted)" opacity="0.2"/>
+  <rect x="340" y="135" width="90" height="8" rx="2" fill="url(#codeGradient)"/>
+  
+  <!-- Component boxes -->
+  <rect x="500" y="95" width="80" height="60" rx="4" fill="var(--color-primary)" opacity="0.1" stroke="var(--color-primary)" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="600" y="105" width="60" height="40" rx="4" fill="var(--color-primary)" opacity="0.05" stroke="var(--color-primary)" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Data flow lines -->
+  <path d="M 200 180 Q 250 160 300 180 T 400 180" stroke="var(--color-primary)" stroke-width="2" fill="none" opacity="0.6"/>
+  <circle cx="400" cy="180" r="3" fill="var(--color-primary)" opacity="0.8"/>
+  <circle cx="200" cy="180" r="3" fill="var(--color-primary)" opacity="0.8"/>
+  
+  <!-- Floating elements -->
+  <circle cx="150" cy="200" r="2" fill="var(--color-primary)" opacity="0.4">
+    <animate attributeName="cy" values="200;190;200" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="650" cy="180" r="1.5" fill="var(--color-primary)" opacity="0.5">
+    <animate attributeName="cy" values="180;170;180" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="550" cy="220" r="2.5" fill="var(--color-primary)" opacity="0.3">
+    <animate attributeName="cy" values="220;210;220" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Project title overlay -->
+  <text x="400" y="280" text-anchor="middle" fill="var(--color-text-muted)" font-size="14" font-family="monospace" opacity="0.6">
+    Interactive Demo Preview
+  </text>
+</svg>

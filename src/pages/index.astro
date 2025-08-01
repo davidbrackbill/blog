@@ -1,16 +1,76 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import about from '../content/about.json';
 
+const projects = await getCollection('projects', ({ data }) => data.home_page === true);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="David Brackbill">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="mb-8">
+      <a href="https://linkedin.com/in/brackbill/" target="_blank" rel="noopener noreferrer">
+        <img 
+        src="/src/assets/headshot.png" 
+          alt="David" 
+          class="hero-image"
+        />
+      </a>
+      <h1 class="hero-title">
+        Hi, I'm David
+      </h1>
+      <p class="hero-subtitle">
+        {about.blurb}
+      </p>
+    </div>
+    <div class="hero-actions">
+      <a 
+        href="/projects" 
+        class="btn btn-primary"
+      >
+        View My Work
+      </a>
+      <a 
+        href="/contact" 
+        class="btn btn-secondary"
+      >
+        Get In Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section-compact">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="prose">
+        {about.about.split('\n').map((paragraph) => (
+        <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section-compact">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <ProjectCard project={project} showDescription={true} />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a 
+          href="/projects" 
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full font-semibold border transition-all duration-200 hover:-translate-y-0.5" 
+          style="background-color: var(--color-surface-elevated); color: var(--color-text-primary); border-color: var(--color-border);"
+        >
+          View All Projects →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

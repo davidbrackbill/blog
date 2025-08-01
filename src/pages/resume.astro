@@ -1,0 +1,394 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import contact from '../content/contact.json';
+import resume from '../content/about.json';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects', ({ data }) => data.resume_page === true);
+---
+
+<Layout title="Resume - Brackbill">
+  <div class="section">
+    <div class="container">
+      <div class="resume-container">
+
+        <!-- Header -->
+        <header class="resume-header">
+          <div class="resume-contact">
+            <h1 class="resume-name">{contact.name}</h1>
+            <p class="resume-title">{resume.title}</p>
+            <div class="resume-contact-info">
+              <a href={`mailto:${contact.email}`} class="resume-contact-link flex items-center gap-2">
+                <img src="/src/assets/icons/mail.svg" alt="Email" width="14" height="14" />
+                {contact.email}
+              </a>
+              <a href={contact.linkedinUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
+                <img src="/src/assets/icons/linkedin.svg" alt="LinkedIn" width="14" height="14" />
+                {contact.linkedinUrl}
+              </a>
+              <a href={contact.githubUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
+                <img src="/src/assets/icons/github.svg" alt="GitHub" width="14" height="14" />
+                {contact.githubUrl}
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">Professional Summary</h2>
+          <p class="resume-text">
+            {resume.summary}
+          </p>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">Technical Skills</h2>
+          <div class="skills-grid">
+            {Object.entries(resume.skills).map(([category, skills]) => (
+              <div class="skill-category">
+                <h3>{category.charAt(0).toUpperCase() + category.slice(1).replace(/([A-Z])/g, ' $1')}</h3>
+                <p>{skills}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">Professional Experience</h2>
+          
+          <div class="timeline">
+            {resume.experience.map((job, index) => {
+              const icons = ['computer.svg', 'layers.svg', 'code.svg'];
+              const iconAlt = ['Computer', 'Layers', 'Code'];
+              return (
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <img src={`/src/assets/icons/${icons[index] || 'computer.svg'}`} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
+                  </div>
+                  <div class="timeline-content">
+                    <div class="job-header">
+                      <div>
+                        <h3 class="job-title">{job.title}</h3>
+                        <p class="company">{job.company}</p>
+                      </div>
+                      <p class="job-date">{job.period}</p>
+                    </div>
+                    <ul class="job-achievements">
+                      {job.achievements.map((achievement) => (
+                        <li>{achievement}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2 class="resume-section-title">Education</h2>
+          
+          <div class="timeline">
+            {resume.education.map((job, index) => {
+              const icons = ['computer.svg', 'layers.svg', 'code.svg'];
+              const iconAlt = ['Computer', 'Layers', 'Code'];
+              return (
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <img src={`/src/assets/icons/${icons[index] || 'computer.svg'}`} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
+                  </div>
+                  <div class="timeline-content">
+                    <div class="job-header">
+                      <div>
+                        <h3 class="job-title">{job.degree}</h3>
+                        <p class="company">{job.institution}</p>
+                      </div>
+                      <p class="job-date">{job.period}</p>
+                    </div>
+                    <ul class="job-achievements">
+                        <li>{job.details}</li>
+                    </ul>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">Notable Projects</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            {projects.map((project) => (
+              <ProjectCard project={project} showDescription={true} showViewDetails={false} />
+            ))}
+          </div>
+        </section>
+    </div>
+      <!-- Download Button -->
+      <!-- <div class="text-center mt-8"> -->
+      <!--   <button  -->
+      <!--     onclick="window.open('/src/assets/resume.pdf', '_blank')"  -->
+      <!--     class="btn btn-primary print-hide" -->
+      <!--     > -->
+      <!--     <img src="/src/assets/icons/document.svg" alt="Document" width="16" height="16" class="mr-2" /> -->
+      <!--     PDF Version -->
+      <!--   </button> -->
+      <!-- </div> -->
+  </div>
+</Layout>
+
+<style>
+  /* Resume-specific styles */
+  .resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--color-surface-elevated);
+    padding: 0 2rem 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .resume-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .resume-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .resume-title {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .resume-contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .resume-contact-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .resume-contact-link:hover {
+    color: var(--color-primary);
+  }
+
+  .resume-section {
+    margin-bottom: 2rem;
+  }
+
+  .resume-section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .resume-text {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-category {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .skill-category h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    margin: 0;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  .skill-category p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+
+  .education {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Timeline styles inspired by astro-templates */
+  .timeline {
+    position: relative;
+  }
+
+  .timeline-item {
+    display: flex;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    bottom: -2rem;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  .timeline-marker {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    position: relative;
+    z-index: 1;
+    border: 3px solid var(--color-surface-elevated);
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-top: 0.25rem;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .company {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .job-date {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .job-achievements {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .job-achievements li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+  }
+
+  .job-achievements li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+
+
+  /* Print styles */
+  @media print {
+    .print-hide {
+      display: none !important;
+    }
+
+    .resume-container {
+      box-shadow: none;
+      background: white;
+      max-width: none;
+      padding: 0;
+    }
+
+    .resume-section {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
+    }
+
+    .job {
+      break-inside: avoid;
+    }
+
+    .resume-contact-info {
+      font-size: 0.8rem;
+    }
+
+    body {
+      background: white !important;
+      color: black !important;
+    }
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .resume-container {
+      padding: 1rem;
+    }
+
+    .resume-contact-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .job-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .skill-category {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .skill-category h3 {
+      min-width: auto;
+    }
+  }
+</style>

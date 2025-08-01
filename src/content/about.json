@@ -1,0 +1,52 @@
+{
+  "name": "David Brackbill",
+  "title": "Software Engineer",
+  "blurb": "I'm passionate about building resilient infrastructure where correctness and performance matter.",
+  "summary": "Full-stack software engineer with over 4 years of making users' hearts flutter. Passionate about building resilient infrastructure where correctness and performance matter. Educational background in machine learning and cloud computing.",
+  "about": "I'm a software developer with a keen interest in systems engineering and machine learning. My professional journey has been shaped by diverse and challenging projects, including algorithms writing, predictive modeling and DAG orchestration.\nI'm passionate about writing useful tools for end users and fellow developers. Roles that allow me to find and delight a niche need are what keep me coding. You can find me writing in whatever gets the job done; I have experience programming large systems in C/C++, Java/TypeScript, and Python and am always looking to learn more tools.\nWhen I'm not coding, chances are I'm reading some weird fiction or a text by Brian Kernighan. If you have any recommendations or job opportunities you think would be interesting to me, let's connect!",
+  "skills": {
+    "frontend": "React, TypeScript, Next.js, Astro, Tailwind CSS, HTML5, Svelte",
+    "backend": "C++, Python, Rust, Node.js, FastAPI, REST",
+    "database": "PostgreSQL, MySQL, Neo4j, Redis",
+    "devopsTools": "Docker, AWS, GitHub Actions, Kubernetes, Terraform"
+  },
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "Symbium",
+      "period": "2022 - 2023",
+      "link": "https://symbium.com",
+      "achievements": [
+        "Conducted capacity‑planning exercises anticipating traffic spikes, provisioning resources to maintain sub-second P99 latency",
+        "Achieved 99.9% API uptime for backend services using Python & FastAPI, ensuring uninterrupted data access for thousands of downstream jobs",
+        "Orchestrated unified data infrastructure (MySQL, PostgreSQL, Neo4j, AWS S3), cutting cloud spend by 20% and improving resource utilization across staging and production",
+        "Reduced initial page load by 500ms and user checkout completion by 20% by optimizing page load order and developing automated workflows across the JS and Node.js codebases",
+        "Developed machine learning algorithms to automate data validation for semi structured data, increasing real coverage of California addresses by 150%"
+      ]
+    },
+    {
+      "title": "Data Engineering Intern",
+      "company": "Symbium",
+      "period": "2022",
+      "link": "https://symbium.com",
+      "achievements": [
+        "Reduced P99 MySQL latency from 5s to 500 ms using in‑memory caching and payload bundling, increasing user responsiveness",
+        "Optimized ETL memory usage by streaming directly to S3, reducing EC2 memory costs by 15% and allowing concurrent user requests"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Computer Science, MS",
+      "institution": "Georgia Institute of Technology",
+      "period": "2026",
+      "details": "Cloud Computing, Operating Systems, Computer Architecture, Human-Computer Interaction"
+    },
+    {
+      "degree": "Statistics & Data Science, BS",
+      "institution": "University of California, Santa Barbara",
+      "period": "2021",
+      "details": "Machine Learning, Data Structures & Algorithms, Database Systems"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import contactData from '../content/contact.json';
+---
+
+
+<Layout title="Contact - Brackbill" description="Get in touch with David Brackbill for exciting opportunities and collaborations.">
+  <div class="section">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="mb-4">Get In Touch</h1>
+        <p class="hero-subtitle">
+          I'd love to hear from you!
+        </p>
+      </div>
+      
+      <div class="flex justify-center">
+        <form id="contact-form" class="w-full max-w-4xl">
+          <div class="mb-8">
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="20" 
+              class="w-full px-6 py-4 border rounded-lg transition-all duration-200 focus:outline-none focus:ring-3 focus:ring-blue-500/10 resize-none text-left" 
+              style="border-color: var(--color-border); background-color: var(--color-surface-elevated); color: var(--color-text-primary); border-radius: var(--border-radius); width: 300px; height: 200px;"
+              placeholder={contactData.placeholderMessage}
+              required
+            ></textarea>
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+              Send Email
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="text-center mt-8">
+        <p class="text-sm mb-4" style="color: var(--color-text-secondary)">
+          Or reach me on:
+        </p>
+        <div class="flex justify-center gap-6">
+          <a 
+            href={`https://${contactData.linkedinUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 font-medium transition-colors duration-200 hover:underline"
+            style="color: var(--color-primary)"
+          >
+            <img src="/src/assets/icons/linkedin.svg" alt="LinkedIn" width="16" height="16" />
+            LinkedIn
+          </a>
+          <a 
+            href={`https://${contactData.githubUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 font-medium transition-colors duration-200 hover:underline"
+            style="color: var(--color-primary)"
+          >
+            <img src="/src/assets/icons/github.svg" alt="GitHub" width="16" height="16" />
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ email: contactData.email }}>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const message = document.getElementById('message').value;
+      const subject = encodeURIComponent('');
+      const body = encodeURIComponent(message);
+      
+      const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
+    });
+  </script>
+</Layout>

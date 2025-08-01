@@ -1,0 +1,37 @@
+---
+export interface Props {
+  project: any;
+  showDescription?: boolean;
+  showViewDetails?: boolean;
+}
+
+const { project, showDescription = true, showViewDetails = true } = Astro.props;
+---
+
+<div class="card">
+  <a href={`/projects/${project.slug}`} class="no-underline">
+    <h3 class="text-xl font-semibold mb-4 hover:text-blue-600 transition-colors duration-200">{project.data.title}</h3>
+  </a>
+  {showDescription && (
+    <p class="mb-4" style="color: var(--color-text-secondary)">{project.data.description}</p>
+  )}
+  <div class="flex flex-wrap gap-2 mb-6">
+    {project.data.tech.map((tech) => (
+      <a href={`/tech/${tech}`} class="no-underline">
+        <span class="tag transition-all duration-200 hover:scale-105 cursor-pointer">
+          {tech}
+        </span>
+      </a>
+    ))}
+  </div>
+  <div class="flex gap-4 justify-center">
+    {showViewDetails && (
+      <a 
+        href={`/projects/${project.slug}`}
+        class="btn btn-primary"
+      >
+        View Details
+      </a>
+    )}
+  </div>
+</div>
