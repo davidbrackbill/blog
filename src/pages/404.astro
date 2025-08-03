@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import characterIcon from '../assets/icons/404-character.svg';
 ---
 
 <Layout title="404 - Page Not Found">
@@ -8,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="text-center">
         <!-- Smiling Guy SVG -->
         <div class="mb-8">
-          <img src="/src/assets/icons/404-character.svg" alt="Friendly 404 character" width="200" height="200" style="margin: 0 auto;" />
+          <img src={characterIcon.src} alt="Friendly 404 character" width="200" height="200" style="margin: 0 auto;" />
         </div>
 
         <!-- 404 Message -->

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, getEntry } from 'astro:content';
+import githubIcon from '../../assets/icons/github.svg';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -44,7 +45,7 @@ const { Content } = await project.render();
               <h3 class="mb-4">
                 <a href={project.data.github} class="inline-flex items-center gap-2">
                   GitHub
-                  <img src="/src/assets/icons/github.svg" alt="GitHub" width="16" height="16" />
+                  <img src={githubIcon.src} alt="GitHub" width="16" height="16" />
                 </a>
               </h3>
               <div class="mb-6"></div>

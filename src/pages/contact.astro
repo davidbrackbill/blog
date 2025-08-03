@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import contactData from '../content/contact.json';
+import linkedinIcon from '../assets/icons/linkedin.svg';
+import githubIcon from '../assets/icons/github.svg';
 ---
 
 
@@ -48,7 +50,7 @@ import contactData from '../content/contact.json';
             class="flex items-center gap-2 font-medium transition-colors duration-200 hover:underline"
             style="color: var(--color-primary)"
           >
-            <img src="/src/assets/icons/linkedin.svg" alt="LinkedIn" width="16" height="16" />
+            <img src={linkedinIcon.src} alt="LinkedIn" width="16" height="16" />
             LinkedIn
           </a>
           <a 
@@ -58,7 +60,7 @@ import contactData from '../content/contact.json';
             class="flex items-center gap-2 font-medium transition-colors duration-200 hover:underline"
             style="color: var(--color-primary)"
           >
-            <img src="/src/assets/icons/github.svg" alt="GitHub" width="16" height="16" />
+            <img src={githubIcon.src} alt="GitHub" width="16" height="16" />
             GitHub
           </a>
         </div>

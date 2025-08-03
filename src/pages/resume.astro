@@ -4,6 +4,12 @@ import ProjectCard from '../components/ProjectCard.astro';
 import contact from '../content/contact.json';
 import resume from '../content/about.json';
 import { getCollection } from 'astro:content';
+import mailIcon from '../assets/icons/mail.svg';
+import linkedinIcon from '../assets/icons/linkedin.svg';
+import githubIcon from '../assets/icons/github.svg';
+import computerIcon from '../assets/icons/computer.svg';
+import layersIcon from '../assets/icons/layers.svg';
+import codeIcon from '../assets/icons/code.svg';
 
 const projects = await getCollection('projects', ({ data }) => data.resume_page === true);
 ---
@@ -20,15 +26,15 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
             <p class="resume-title">{resume.title}</p>
             <div class="resume-contact-info">
               <a href={`mailto:${contact.email}`} class="resume-contact-link flex items-center gap-2">
-                <img src="/src/assets/icons/mail.svg" alt="Email" width="14" height="14" />
+                <img src={mailIcon.src} alt="Email" width="14" height="14" />
                 {contact.email}
               </a>
               <a href={contact.linkedinUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
-                <img src="/src/assets/icons/linkedin.svg" alt="LinkedIn" width="14" height="14" />
+                <img src={linkedinIcon.src} alt="LinkedIn" width="14" height="14" />
                 {contact.linkedinUrl}
               </a>
               <a href={contact.githubUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
-                <img src="/src/assets/icons/github.svg" alt="GitHub" width="14" height="14" />
+                <img src={githubIcon.src} alt="GitHub" width="14" height="14" />
                 {contact.githubUrl}
               </a>
             </div>
@@ -62,12 +68,12 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
           
           <div class="timeline">
             {resume.experience.map((job, index) => {
-              const icons = ['computer.svg', 'layers.svg', 'code.svg'];
+              const iconImports = [computerIcon, layersIcon, codeIcon];
               const iconAlt = ['Computer', 'Layers', 'Code'];
               return (
                 <div class="timeline-item">
                   <div class="timeline-marker">
-                    <img src={`/src/assets/icons/${icons[index] || 'computer.svg'}`} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
+                    <img src={(iconImports[index] || computerIcon).src} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
                   </div>
                   <div class="timeline-content">
                     <div class="job-header">
@@ -94,12 +100,12 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
           
           <div class="timeline">
             {resume.education.map((job, index) => {
-              const icons = ['computer.svg', 'layers.svg', 'code.svg'];
+              const iconImports = [computerIcon, layersIcon, codeIcon];
               const iconAlt = ['Computer', 'Layers', 'Code'];
               return (
                 <div class="timeline-item">
                   <div class="timeline-marker">
-                    <img src={`/src/assets/icons/${icons[index] || 'computer.svg'}`} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
+                    <img src={(iconImports[index] || computerIcon).src} alt={iconAlt[index] || 'Computer'} width="16" height="16" />
                   </div>
                   <div class="timeline-content">
                     <div class="job-header">
