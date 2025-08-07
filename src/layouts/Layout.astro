@@ -4,6 +4,7 @@ import sunIcon from '../assets/icons/sun.svg';
 import mailIcon from '../assets/icons/mail.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import githubIcon from '../assets/icons/github.svg';
+import contact from '../content/contact.json';
 
 export interface Props {
   title: string;
@@ -51,19 +52,20 @@ const year = new Date().getFullYear()
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="/" class="nav-logo">
-          David Brackbill
-        </a>
-        <div class="flex items-center gap-8">
-          <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/resume">Resume</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-          <button class="theme-toggle" aria-label="Toggle theme">
-            <img src={sunIcon.src} alt="Toggle theme" width="20" height="20" class="theme-icon" />
-          </button>
+        <div class="container flex justify-between items-center">
+          <a href="/" class="nav-logo">
+            David Brackbill
+          </a>
+          <div class="flex items-center gap-8">
+            <ul class="nav-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/projects">Projects</a></li>
+              <li><a href="/resume">Resume</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+              <img src={sunIcon.src} alt="Toggle theme" width="20" height="20" class="theme-icon" />
+            </button>
+          </div>
         </div>
       </nav>
     </header>
@@ -81,7 +83,7 @@ const year = new Date().getFullYear()
             Email
           </a>
           <a 
-            href="https://linkedin.com/in/brackbill" 
+            href={contact.linkedinUrl} 
             target="_blank" 
             rel="noopener noreferrer"
             class="flex items-center gap-2 font-medium transition-colors duration-200"
@@ -90,7 +92,7 @@ const year = new Date().getFullYear()
             LinkedIn
           </a>
           <a 
-            href="https://github.com/davidbrackbill" 
+            href={contact.githubUrl} 
             target="_blank" 
             rel="noopener noreferrer"
             class="flex items-center gap-2 font-medium transition-colors duration-200"

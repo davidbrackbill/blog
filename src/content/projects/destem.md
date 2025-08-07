@@ -2,9 +2,7 @@
 title: "Edstem CSS"
 description: "A dark, minimal CSS config for EdStem, for use with Stylus."
 tech: ["CSS"]
-home_page: true
-projects_page: true
-resume_page: false
+projects_index: 2
 github: "https://github.com/davidbrackbill/DeStem"
 # image: "/src/assets/projects/destem.webp"
 # readme: "https://raw.githubusercontent.com/davidbrackbill/DeStem/refs/heads/main/README.md"

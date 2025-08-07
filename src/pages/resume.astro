@@ -3,20 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import contact from '../content/contact.json';
 import resume from '../content/about.json';
-import { getCollection } from 'astro:content';
 import mailIcon from '../assets/icons/mail.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import githubIcon from '../assets/icons/github.svg';
 import computerIcon from '../assets/icons/computer.svg';
 import layersIcon from '../assets/icons/layers.svg';
 import codeIcon from '../assets/icons/code.svg';
+import { getProjects } from '../utils/projects.js';
 
-const projects = await getCollection('projects', ({ data }) => data.resume_page === true);
+const projects = await getProjects('resume');
 ---
 
 <Layout title="Resume - Brackbill">
   <div class="section">
-    <div class="container">
       <div class="resume-container">
 
         <!-- Header -->
@@ -134,7 +133,6 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
             ))}
           </div>
         </section>
-    </div>
       <!-- Download Button -->
       <!-- <div class="text-center mt-8"> -->
       <!--   <button  -->
@@ -177,6 +175,7 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
     font-size: 1.25rem;
     color: var(--color-primary);
     margin-bottom: 1rem;
+    font-weight: 400;
   }
 
   .resume-contact-info {
@@ -204,7 +203,7 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
 
   .resume-section-title {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 600;
     color: var(--color-primary);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
@@ -307,7 +306,7 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
 
   .company {
     color: var(--color-primary);
-    font-weight: 500;
+    font-weight: 400;
   }
 
   .job-date {
@@ -334,7 +333,7 @@ const projects = await getCollection('projects', ({ data }) => data.resume_page 
     left: 0;
     top: 0;
     color: var(--color-primary);
-    font-weight: bold;
+    font-weight: normal;
   }
 
 

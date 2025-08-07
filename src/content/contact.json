@@ -3,8 +3,8 @@
   "title": "Get In Touch",
   "subtitle": "Ready to discuss an exciting opportunity? I'd love to hear from you!",
   "email": "david@example.com",
-  "placeholderMessage": "Hi David! I have an amazing opportunity that would be perfect for your skills. We're looking for someone who can turn coffee into code and debug production issues at 3 AM with a smile. Are you ready to join our team of digital wizards and help build the next big thing? ✨",
+  "placeholderMessage": "Hi David! I have an amazing opportunity that would be perfect for your skills. We're looking for someone who can turn coffee into code and tickets into smiles. Are you ready to join our team of digital wizards and help build the next big thing? ✨",
   "emailUrl": "mailto:david@example.com",
-  "linkedinUrl": "linkedin.com/in/brackbill",
-  "githubUrl": "github.com/davidbrackbill/site"
+  "linkedinUrl": "https://linkedin.com/in/brackbill",
+  "githubUrl": "https://github.com/davidbrackbill/"
 }
