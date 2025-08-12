@@ -2,9 +2,7 @@
 title: "Minimax Solver"
 description: "Solve and visualize a minimax game tree using alpha-beta pruning."
 tech: ["Python", "AI"]
-home_index: 1
-projects_index: 1
-resume_index: 1
+priority: 2
 github: "https://github.com/davidbrackbill/minimax"
 ---
 

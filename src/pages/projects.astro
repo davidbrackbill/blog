@@ -4,7 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import GithubProfile from '../components/GithubProfile.astro';
 import { getProjects } from '../utils/projects.js';
 
-const projects = await getProjects('projects');
+const projects = await getProjects();
 ---
 
 <Layout title="Projects - Brackbill" description="Explore David's portfolio of software engineering projects and technical work.">

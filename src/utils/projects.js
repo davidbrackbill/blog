@@ -1,15 +1,9 @@
 import { getCollection } from 'astro:content';
 
-export async function getProjects(pageType) {
-  const indexProperty = `${pageType}_index`;
-  
-  const projects = await getCollection('projects', ({ data }) => 
-    data[indexProperty] !== undefined
+export async function getProjects(limit = null) {
+  const projects = await getCollection('projects');
+  projects.sort((A, B) =>
+    (A.data.priority ?? Infinity) - (B.data.priority ?? Infinity)
   );
-  
-  projects.sort((a, b) => 
-    (a.data[indexProperty] || 0) - (b.data[indexProperty] || 0)
-  );
-  
-  return projects;
+  return limit ? projects.slice(0, limit) : projects;
 }

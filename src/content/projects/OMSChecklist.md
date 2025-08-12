@@ -2,9 +2,7 @@
 title: "OMSChecklist"
 description: "Interactive course planner for Georgia Tech's OMSCS program."
 tech: ["Svelte", "JavaScript", "CSS", "HTML"]
-home_index: 0
-projects_index: 0
-resume_index: 0
+priority: 1
 github: "https://github.com/davidbrackbill/OMSChecklist"
 ---
 
