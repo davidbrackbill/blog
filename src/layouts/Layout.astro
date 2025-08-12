@@ -78,7 +78,7 @@ const year = new Date().getFullYear()
       <div class="footer-content">
         <p>&copy; {year} David Brackbill</p>
         <div class="footer-links">
-          <a href="mailto:david@example.com" class="flex items-center gap-2 font-medium transition-colors duration-200">
+          <a href={contact.emailUrl} class="flex items-center gap-2 font-medium transition-colors duration-200">
             <img src={mailIcon.src} alt="Email" width="16" height="16" />
             Email
           </a>

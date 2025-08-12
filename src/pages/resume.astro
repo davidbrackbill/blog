@@ -24,17 +24,17 @@ const projects = await getProjects('resume');
             <h1 class="resume-name">{contact.name}</h1>
             <p class="resume-title">{resume.title}</p>
             <div class="resume-contact-info">
-              <a href={`mailto:${contact.email}`} class="resume-contact-link flex items-center gap-2">
+              <a href={contact.emailUrl} class="resume-contact-link flex items-center gap-2">
                 <img src={mailIcon.src} alt="Email" width="14" height="14" />
                 {contact.email}
               </a>
               <a href={contact.linkedinUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
                 <img src={linkedinIcon.src} alt="LinkedIn" width="14" height="14" />
-                {contact.linkedinUrl}
+                {contact.linkedin}
               </a>
               <a href={contact.githubUrl} target="_blank" rel="noopener noreferrer" class="resume-contact-link flex items-center gap-2">
                 <img src={githubIcon.src} alt="GitHub" width="14" height="14" />
-                {contact.githubUrl}
+                {contact.github}
               </a>
             </div>
           </div>

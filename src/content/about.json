@@ -1,9 +1,9 @@
 {
   "name": "David Brackbill",
-  "title": "Software Engineer",
+  "title": "Full-Stack Software Engineer",
   "blurb": "I'm passionate about building resilient infrastructure where correctness and performance matter.",
   "summary": "Full-stack software engineer with over 4 years of making users' hearts flutter. Passionate about building resilient infrastructure where correctness and performance matter. Educational background in machine learning and cloud computing.",
-  "about": "I'm a software developer with a keen interest in systems engineering and machine learning. My professional journey has been shaped by diverse and challenging projects, including algorithms writing, predictive modeling and DAG orchestration.\nI'm passionate about writing useful tools for end users and fellow developers. Roles that allow me to find and delight a niche need are what keep me coding. You can find me writing in whatever gets the job done; I have experience programming large systems in C/C++, Java/TypeScript, and Python and am always looking to learn more tools.\nWhen I'm not coding, chances are I'm reading some weird fiction or a text by Brian Kernighan. If you have any recommendations or job opportunities you think would be interesting to me, let's connect!",
+  "about": "I'm a full-stack developer interested in systems engineering and machine learning. My professional journey has been shaped by diverse and challenging projects, including algorithms writing, predictive modeling and DAG orchestration.\nI'm passionate about writing useful tools for end users and fellow developers. Roles that allow me to find and delight a niche need are what keep me coding. You can find me writing in whatever gets the job done; I have experience programming large systems in C/C++, JavaScript/TypeScript, and Python and am always looking to learn more tools.\nWhen I'm not coding, chances are I'm reading some weird fiction or a text by Brian Kernighan. If you have any recommendations or job opportunities you think would be interesting to me, let's connect!",
   "skills": {
     "frontend": "React, TypeScript, Next.js, Astro, Tailwind CSS, HTML5, Svelte",
     "backend": "C++, Python, Rust, Node.js, FastAPI, REST",
