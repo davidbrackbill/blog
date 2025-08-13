@@ -9,7 +9,7 @@ const { technologies } = Astro.props;
 <div class="flex flex-wrap gap-2">
   {technologies.map((tech) => (
     <a href={`/tech/${tech}`} class="no-underline">
-      <span class="tag transition-all duration-200 hover:scale-105 cursor-pointer">
+      <span class="tag hover:scale-105 cursor-pointer">
         {tech}
       </span>
     </a>
