@@ -1,0 +1,20 @@
+---
+import BalloonTracker from './windborne/_BalloonTracker.svelte';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Windborne Balloon Constellation Tracker" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/db.svg" />
+    <title>Windborne Balloon Tracker</title>
+    <style>
+      @import 'tailwindcss';
+    </style>
+  </head>
+  <body>
+    <BalloonTracker client:load />
+  </body>
+</html>

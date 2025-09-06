@@ -1,0 +1,4 @@
+{
+  "windborneUrl": "https://db-proxy.vercel.app/api/windborne",
+  "openweatherUrl": "https://db-proxy.vercel.app/api/openweather"
+}

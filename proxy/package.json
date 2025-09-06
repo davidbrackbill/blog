@@ -1,0 +1,9 @@
+{
+  "name": "david-brackbill-proxy",
+  "version": "1.0.0",
+  "description": "Vercel proxy to solve CORS issues",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}
